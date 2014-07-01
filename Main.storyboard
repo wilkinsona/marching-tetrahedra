@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fjq-Yf-yGj">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+    </dependencies>
+    <scenes>
+        <!--Marching Tetrahedra View Controller-->
+        <scene sceneID="fGi-UR-Yc7">
+            <objects>
+                <viewController id="Fjq-Yf-yGj" customClass="MarchingTetrahedraViewController" customModule="MarchingTetrahedra" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VTm-3v-nVR"/>
+                        <viewControllerLayoutGuide type="bottom" id="XkF-Xc-uw6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MZ9-hL-1dy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" allowsCameraControl="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oL7-T7-PJT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </sceneKitView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nnnn triangles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkA-Cc-v62">
+                                <rect key="frame" x="20" y="20" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MkA-Cc-v62" secondAttribute="trailing" constant="20" id="07O-x5-pfH"/>
+                            <constraint firstItem="MkA-Cc-v62" firstAttribute="leading" secondItem="MZ9-hL-1dy" secondAttribute="leading" constant="20" id="0il-sK-Kox"/>
+                            <constraint firstAttribute="height" secondItem="oL7-T7-PJT" secondAttribute="height" id="82q-7V-vmt"/>
+                            <constraint firstItem="MkA-Cc-v62" firstAttribute="top" secondItem="MZ9-hL-1dy" secondAttribute="top" constant="20" symbolic="YES" id="EOl-nh-MU3"/>
+                            <constraint firstAttribute="width" secondItem="oL7-T7-PJT" secondAttribute="width" id="imX-CA-9C7"/>
+                            <constraint firstAttribute="centerY" secondItem="oL7-T7-PJT" secondAttribute="centerY" id="vI9-oZ-lAf"/>
+                            <constraint firstAttribute="centerX" secondItem="oL7-T7-PJT" secondAttribute="centerX" id="y9I-b6-Ceb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="polygonLabel" destination="MkA-Cc-v62" id="PKN-Lk-vN9"/>
+                        <outlet property="sceneView" destination="oL7-T7-PJT" id="4ca-PM-bVD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chO-BR-gGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="356"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

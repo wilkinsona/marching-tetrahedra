@@ -1,0 +1,312 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB3E57A8195715C20028B6BC /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3E57A7195715C20028B6BC /* Vertex.swift */; };
+		AB401FC0196336C10076EA7D /* SCNVector3Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB401FBF196336C10076EA7D /* SCNVector3Extension.swift */; };
+		AB5F96881960C12C00710463 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5F96871960C12C00710463 /* Source.swift */; };
+		AB629BD81944C909003A5FFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB629BD71944C909003A5FFE /* AppDelegate.swift */; };
+		AB629BDA1944C909003A5FFE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB629BD91944C909003A5FFE /* Images.xcassets */; };
+		AB629BF31944E67E003A5FFE /* MarchingTetrahedraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB629BF11944E67E003A5FFE /* MarchingTetrahedraViewController.swift */; };
+		AB629BF61944E982003A5FFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB629BF51944E982003A5FFE /* Main.storyboard */; };
+		AB629BFA1944F4D9003A5FFE /* PointSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB629BF91944F4D9003A5FFE /* PointSource.swift */; };
+		AB749C0B19450755008D5997 /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB749C0A19450755008D5997 /* Cube.swift */; };
+		AB85A9B219479E8100446F18 /* Tetrahedron.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB85A9B119479E8100446F18 /* Tetrahedron.swift */; };
+		AB936F3D195DD11C0000A1C7 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB936F3C195DD11C0000A1C7 /* Edge.swift */; };
+		AB936F3F195DD1450000A1C7 /* Intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB936F3E195DD1450000A1C7 /* Intersection.swift */; };
+		AB936F41195EF1410000A1C7 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB936F40195EF1410000A1C7 /* Point.swift */; };
+		ABDBFB361957681D007E54F1 /* Surface.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDBFB351957681D007E54F1 /* Surface.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AB3E57A7195715C20028B6BC /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		AB401FBF196336C10076EA7D /* SCNVector3Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNVector3Extension.swift; sourceTree = "<group>"; };
+		AB5F96871960C12C00710463 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		AB629BD21944C909003A5FFE /* MarchingTetrahedra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarchingTetrahedra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB629BD61944C909003A5FFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB629BD71944C909003A5FFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AB629BD91944C909003A5FFE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AB629BF11944E67E003A5FFE /* MarchingTetrahedraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarchingTetrahedraViewController.swift; path = MarchingTetrahedra/MarchingTetrahedraViewController.swift; sourceTree = SOURCE_ROOT; };
+		AB629BF51944E982003A5FFE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AB629BF91944F4D9003A5FFE /* PointSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointSource.swift; sourceTree = "<group>"; };
+		AB749C0A19450755008D5997 /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		AB85A9B119479E8100446F18 /* Tetrahedron.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tetrahedron.swift; sourceTree = "<group>"; };
+		AB936F3C195DD11C0000A1C7 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		AB936F3E195DD1450000A1C7 /* Intersection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intersection.swift; sourceTree = "<group>"; };
+		AB936F40195EF1410000A1C7 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		ABDBFB351957681D007E54F1 /* Surface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Surface.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB629BCF1944C909003A5FFE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB629BC91944C909003A5FFE = {
+			isa = PBXGroup;
+			children = (
+				AB629BF51944E982003A5FFE /* Main.storyboard */,
+				AB629BD41944C909003A5FFE /* MarchingTetrahedra */,
+				AB629BD31944C909003A5FFE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB629BD31944C909003A5FFE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB629BD21944C909003A5FFE /* MarchingTetrahedra.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB629BD41944C909003A5FFE /* MarchingTetrahedra */ = {
+			isa = PBXGroup;
+			children = (
+				AB629BD71944C909003A5FFE /* AppDelegate.swift */,
+				AB749C0A19450755008D5997 /* Cube.swift */,
+				AB936F3C195DD11C0000A1C7 /* Edge.swift */,
+				AB936F3E195DD1450000A1C7 /* Intersection.swift */,
+				AB629BF11944E67E003A5FFE /* MarchingTetrahedraViewController.swift */,
+				AB936F40195EF1410000A1C7 /* Point.swift */,
+				AB629BF91944F4D9003A5FFE /* PointSource.swift */,
+				AB401FBF196336C10076EA7D /* SCNVector3Extension.swift */,
+				AB5F96871960C12C00710463 /* Source.swift */,
+				ABDBFB351957681D007E54F1 /* Surface.swift */,
+				AB85A9B119479E8100446F18 /* Tetrahedron.swift */,
+				AB3E57A7195715C20028B6BC /* Vertex.swift */,
+				AB629BD91944C909003A5FFE /* Images.xcassets */,
+				AB629BD51944C909003A5FFE /* Supporting Files */,
+			);
+			path = MarchingTetrahedra;
+			sourceTree = "<group>";
+		};
+		AB629BD51944C909003A5FFE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB629BD61944C909003A5FFE /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB629BD11944C909003A5FFE /* MarchingTetrahedra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB629BE91944C909003A5FFE /* Build configuration list for PBXNativeTarget "MarchingTetrahedra" */;
+			buildPhases = (
+				AB629BCE1944C909003A5FFE /* Sources */,
+				AB629BCF1944C909003A5FFE /* Frameworks */,
+				AB629BD01944C909003A5FFE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarchingTetrahedra;
+			productName = MarchingTetrahedra;
+			productReference = AB629BD21944C909003A5FFE /* MarchingTetrahedra.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB629BCA1944C909003A5FFE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Deft Methods";
+				TargetAttributes = {
+					AB629BD11944C909003A5FFE = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
+			};
+			buildConfigurationList = AB629BCD1944C909003A5FFE /* Build configuration list for PBXProject "MarchingTetrahedra" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AB629BC91944C909003A5FFE;
+			productRefGroup = AB629BD31944C909003A5FFE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB629BD11944C909003A5FFE /* MarchingTetrahedra */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB629BD01944C909003A5FFE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB629BF61944E982003A5FFE /* Main.storyboard in Resources */,
+				AB629BDA1944C909003A5FFE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB629BCE1944C909003A5FFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB629BF31944E67E003A5FFE /* MarchingTetrahedraViewController.swift in Sources */,
+				ABDBFB361957681D007E54F1 /* Surface.swift in Sources */,
+				AB749C0B19450755008D5997 /* Cube.swift in Sources */,
+				AB85A9B219479E8100446F18 /* Tetrahedron.swift in Sources */,
+				AB5F96881960C12C00710463 /* Source.swift in Sources */,
+				AB629BD81944C909003A5FFE /* AppDelegate.swift in Sources */,
+				AB3E57A8195715C20028B6BC /* Vertex.swift in Sources */,
+				AB401FC0196336C10076EA7D /* SCNVector3Extension.swift in Sources */,
+				AB936F41195EF1410000A1C7 /* Point.swift in Sources */,
+				AB629BFA1944F4D9003A5FFE /* PointSource.swift in Sources */,
+				AB936F3F195DD1450000A1C7 /* Intersection.swift in Sources */,
+				AB936F3D195DD11C0000A1C7 /* Edge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AB629BE71944C909003A5FFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Debug;
+		};
+		AB629BE81944C909003A5FFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB629BEA1944C909003A5FFE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = MarchingTetrahedra/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AB629BEB1944C909003A5FFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = MarchingTetrahedra/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB629BCD1944C909003A5FFE /* Build configuration list for PBXProject "MarchingTetrahedra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB629BE71944C909003A5FFE /* Debug */,
+				AB629BE81944C909003A5FFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB629BE91944C909003A5FFE /* Build configuration list for PBXNativeTarget "MarchingTetrahedra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB629BEA1944C909003A5FFE /* Debug */,
+				AB629BEB1944C909003A5FFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB629BCA1944C909003A5FFE /* Project object */;
+}
