@@ -22,7 +22,7 @@ import SceneKit
         return false
     }
 
-    func subdivide() -> Tetrahedron[] {
+    func subdivide() -> [Tetrahedron] {
         return [
             Tetrahedron(v1: self.vertices[7], v2: self.vertices[3], v3: self.vertices[2], v4: self.vertices[0]),
             Tetrahedron(v1: self.vertices[0], v2: self.vertices[7], v3: self.vertices[6], v4: self.vertices[2]),
