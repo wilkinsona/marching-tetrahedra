@@ -1,26 +1,26 @@
 import SceneKit
 
-@final class Surface {
+final class Surface {
 
-    let accuracy: Float = 0.00001
+    private let accuracy: Float = 0.00001
 
-    let threshold: Float = 0.5
+    private let threshold: Float = 0.5
 
-    let sources: Array<Source>
+    private let sources: Array<Source>
 
-    let width: Int
+    private let width: Int
 
-    let height: Int
+    private let height: Int
 
-    let depth: Int
+    private let depth: Int
 
-    let cubeSize: Float
+    private let cubeSize: Float
 
-    var pointIndexByEdge: Dictionary<Edge, Int32> = Dictionary(minimumCapacity: 4096)
+    private var pointIndexByEdge: Dictionary<Edge, Int32> = Dictionary(minimumCapacity: 4096)
 
-    var points: Array<Point> = Array()
+    private var points: Array<Point> = Array()
 
-    var indexes: Array<Int32> = Array()
+    private var indexes: Array<Int32> = Array()
 
     init(width: Int, height: Int, depth: Int, cubeSize: Float, sources:Array<Source>) {
         self.width = width
@@ -32,7 +32,7 @@ import SceneKit
         self.sources = sources
     }
 
-    func createGeometry() -> SCNGeometry {
+    func createGeometry() -> (SCNGeometry, Int) {
         self.points.removeAll(keepCapacity: true)
         self.pointIndexByEdge.removeAll(keepCapacity: true)
         self.indexes.removeAll(keepCapacity: true)
@@ -51,15 +51,21 @@ import SceneKit
 
         let geometrySource = SCNGeometrySource(vertices: &pointVectors, count: pointVectors.count)
 
+        let triangleCount = indexes.count / 3
+
         let data = NSData(bytes: indexes, length: sizeof(Int32) * indexes.count)
-        let geometryElement = SCNGeometryElement(data: data, primitiveType: SCNGeometryPrimitiveType.Triangles, primitiveCount: indexes.count / 3, bytesPerIndex: sizeof(Int32))
+        let geometryElement = SCNGeometryElement(data: data, primitiveType: SCNGeometryPrimitiveType.Triangles, primitiveCount: triangleCount, bytesPerIndex: sizeof(Int32))
 
         let normalSource = createNormalSource()
 
-        return SCNGeometry(sources: [geometrySource, normalSource], elements: [geometryElement])
+        return (SCNGeometry(sources: [geometrySource, normalSource], elements: [geometryElement]), triangleCount)
     }
 
-    func createCubes() -> Array<Cube> {
+    func triangles() -> Int {
+        return self.indexes.count / 3
+    }
+
+    private func createCubes() -> Array<Cube> {
         let originX: Float = -((self.cubeSize * Float(self.width)) / 2)
         let originY: Float = -((self.cubeSize * Float(self.height)) / 2)
         let originZ: Float = -((self.cubeSize * Float(self.depth)) / 2)
@@ -109,7 +115,7 @@ import SceneKit
         return cubes;
     }
 
-    func addPolygonForIntersection(intersection: Intersection) {
+    private func addPolygonForIntersection(intersection: Intersection) {
         let index1 = pointForIntersectedEdge(intersection.edge3)
         let index2 = pointForIntersectedEdge(intersection.edge2)
         let index3 = pointForIntersectedEdge(intersection.edge1)
@@ -119,7 +125,7 @@ import SceneKit
         indexes.append(index3)
     }
 
-    func pointForIntersectedEdge(edge: Edge) -> Int32 {
+    private func pointForIntersectedEdge(edge: Edge) -> Int32 {
         var pointIndex = pointIndexByEdge[edge];
         if (!pointIndex) {
             let pointForEdge = pointAtThresholdOnEdge(edge)
@@ -132,7 +138,7 @@ import SceneKit
         return pointIndex!
     }
 
-    func pointAtThresholdOnEdge(edge: Edge) -> SCNVector3 {
+    private func pointAtThresholdOnEdge(edge: Edge) -> SCNVector3 {
 
         var low: SCNVector3
         var high: SCNVector3
@@ -148,7 +154,7 @@ import SceneKit
         return pointAtThresholdBetween(vertex1: low, vertex2: high)
     }
 
-    func pointAtThresholdBetween(#vertex1: SCNVector3, vertex2: SCNVector3) -> SCNVector3 {
+    private func pointAtThresholdBetween(#vertex1: SCNVector3, vertex2: SCNVector3) -> SCNVector3 {
         let midpoint = vertex1 + ((vertex2 - vertex1) / 2)
 
         let delta = fieldStrengthAtPosition(midpoint) - self.threshold
@@ -164,7 +170,7 @@ import SceneKit
         }
     }
 
-    func fieldStrengthAtPosition(position: SCNVector3) -> Float {
+    private func fieldStrengthAtPosition(position: SCNVector3) -> Float {
         var strength = Float(0.0)
         for source in self.sources {
             strength += source.strengthAtPosition(position)
@@ -172,7 +178,7 @@ import SceneKit
         return strength
     }
 
-    func createNormalSource() -> SCNGeometrySource {
+    private func createNormalSource() -> SCNGeometrySource {
         var normals = Array<SCNVector3>()
 
         for (var i: Int = 0; i < indexes.count - 2; i+=3) {

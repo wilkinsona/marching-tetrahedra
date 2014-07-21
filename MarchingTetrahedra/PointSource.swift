@@ -1,9 +1,10 @@
 import SceneKit
 
-@final class PointSource: Source {
+final class PointSource: Source {
 
-    let position: SCNVector3
-    let radius: Float
+    private let position: SCNVector3
+
+    private let radius: Float
 
     init(position: SCNVector3, radius: Float) {
         self.position = position

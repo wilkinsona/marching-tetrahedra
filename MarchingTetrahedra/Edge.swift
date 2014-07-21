@@ -1,5 +1,7 @@
 struct Edge: Hashable {
+
     let vertex1: Vertex
+
     let vertex2: Vertex
 
     init(vertex1: Vertex, vertex2: Vertex) {

@@ -1,8 +1,11 @@
 import SceneKit
 
 struct Vertex {
+
     let position: SCNVector3
+
     let fieldStrength: Float
+
     let id: Int
 
     init(position: SCNVector3, fieldStrength:Float, id: Int) {

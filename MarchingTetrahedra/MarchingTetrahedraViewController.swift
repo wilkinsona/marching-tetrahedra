@@ -3,9 +3,9 @@ import SceneKit
 
 class MarchingTetrahedraViewController: UIViewController {
 
-    @IBOutlet var sceneView: SCNView
+    @IBOutlet private var sceneView: SCNView!
 
-    @IBOutlet var polygonLabel: UILabel
+    @IBOutlet private var polygonLabel: UILabel!
 
     override func viewDidLoad() {
         let surface = Surface(width: 20, height:20, depth:20, cubeSize: 0.5, sources: [
@@ -17,7 +17,7 @@ class MarchingTetrahedraViewController: UIViewController {
             PointSource(position: SCNVector3(x: 0, y: -1, z: 3.25), radius: 1)
         ])
 
-        let geometry = surface.createGeometry()
+        let (geometry, triangleCount) = surface.createGeometry()
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.yellowColor()
         material.specular.contents = UIColor.yellowColor()
@@ -52,6 +52,6 @@ class MarchingTetrahedraViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
 
         self.sceneView.scene = scene
-        self.polygonLabel.text = "\(surface.indexes.count / 3) triangles"
+        self.polygonLabel.text = "\(triangleCount) triangles"
     }
 }

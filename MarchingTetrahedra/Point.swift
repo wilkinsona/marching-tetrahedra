@@ -1,6 +1,7 @@
 import SceneKit
 
-@final class Point {
+final class Point {
+
     let position: SCNVector3
     var normals: Array<SCNVector3> = Array()
 

@@ -1,6 +1,6 @@
-@final class Tetrahedron {
+final class Tetrahedron {
 
-    let vertices: [Vertex]
+    private let vertices: [Vertex]
 
     init(v1: Vertex, v2: Vertex, v3: Vertex, v4: Vertex) {
         self.vertices = [v1, v2, v3, v4]

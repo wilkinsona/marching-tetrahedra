@@ -1,8 +1,8 @@
 import SceneKit
 
-@final class Cube {
+final class Cube {
 
-    let vertices: Array<Vertex>
+    private let vertices: Array<Vertex>
 
     init(v1: Vertex, v2: Vertex, v3: Vertex, v4: Vertex, v5: Vertex, v6: Vertex, v7: Vertex, v8: Vertex) {
         self.vertices = [v1, v2, v3, v4, v5, v6, v7, v8]
