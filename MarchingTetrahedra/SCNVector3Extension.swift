@@ -18,18 +18,18 @@ extension SCNVector3 {
     }
 }
 
-@infix func - (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+func - (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
     return SCNVector3(x: left.x - right.x, y: left.y - right.y, z: left.z - right.z)
 }
 
-@infix func + (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
+func + (left: SCNVector3, right: SCNVector3) -> SCNVector3 {
     return SCNVector3(x: left.x + right.x, y: left.y + right.y, z: left.z + right.z)
 }
 
-@assignment func += (inout left: SCNVector3, right: SCNVector3) {
+func += (inout left: SCNVector3, right: SCNVector3) {
     left = left + right
 }
 
-@infix func / (left: SCNVector3, right: Float) -> SCNVector3 {
+func / (left: SCNVector3, right: Float) -> SCNVector3 {
     return SCNVector3(x: left.x / right, y: left.y / right, z: left.z / right)
 }

@@ -6,7 +6,9 @@ An implementation of [Marching Tetrahedra][1] for iOS, written using SceneKit an
 
 ## Known issues
 
-Crashes in the 64-bit simulator with `C3DRendererContextSetupResidentMeshSourceAtLocation - double not supported`
+In the 64-bit simulator the geometry does not render correctly and
+`SceneKit: error, C3DRendererContextSetupResidentMeshSourceAtLocation - double not supported` is
+logged twice.
 
 ## Acknowledgements
 

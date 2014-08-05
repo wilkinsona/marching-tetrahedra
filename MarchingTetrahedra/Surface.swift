@@ -127,15 +127,16 @@ final class Surface {
 
     private func pointForIntersectedEdge(edge: Edge) -> Int32 {
         var pointIndex = pointIndexByEdge[edge];
-        if (!pointIndex) {
+        if (pointIndex == nil) {
             let pointForEdge = pointAtThresholdOnEdge(edge)
             points.append(Point(position: pointForEdge))
             let index = Int32(points.count - 1)
             pointIndexByEdge[edge] = index
 
             return index
+        } else {
+            return pointIndex!
         }
-        return pointIndex!
     }
 
     private func pointAtThresholdOnEdge(edge: Edge) -> SCNVector3 {
