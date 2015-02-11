@@ -4,12 +4,6 @@ An implementation of [Marching Tetrahedra][1] for iOS, written using SceneKit an
 
 <img src="screenshot.png" width="320" height="568"></img>
 
-## Known issues
-
-In the 64-bit simulator the geometry does not render correctly and
-`SceneKit: error, C3DRendererContextSetupResidentMeshSourceAtLocation - double not supported` is
-logged twice.
-
 ## Acknowledgements
 
 Thanks to [David Ronnqvist][2] for his [Custom SceneKit geometry][3] blog post

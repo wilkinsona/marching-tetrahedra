@@ -47,14 +47,18 @@ final class Surface {
             }
         }
 
-        var pointVectors = self.points.map { $0.position }
+        let pointVectors: Array<Float> = self.points.reduce([]) {
+            return $0 + [$1.position.x, $1.position.y, $1.position.z]
+        }
 
-        let geometrySource = SCNGeometrySource(vertices: &pointVectors, count: pointVectors.count)
+        let vertexData = NSData(bytes: pointVectors, length: pointVectors.count * sizeof(Float))
+
+        let geometrySource = SCNGeometrySource(data: vertexData, semantic: SCNGeometrySourceSemanticVertex, vectorCount: self.points.count, floatComponents: true, componentsPerVector: 3, bytesPerComponent: sizeof(Float), dataOffset: 0, dataStride: sizeof(Float) * 3)
 
         let triangleCount = indexes.count / 3
 
-        let data = NSData(bytes: indexes, length: sizeof(Int32) * indexes.count)
-        let geometryElement = SCNGeometryElement(data: data, primitiveType: SCNGeometryPrimitiveType.Triangles, primitiveCount: triangleCount, bytesPerIndex: sizeof(Int32))
+        let normalData = NSData(bytes: indexes, length: sizeof(Int32) * indexes.count)
+        let geometryElement = SCNGeometryElement(data: normalData, primitiveType: SCNGeometryPrimitiveType.Triangles, primitiveCount: triangleCount, bytesPerIndex: sizeof(Int32))
 
         let normalSource = createNormalSource()
 
@@ -180,7 +184,7 @@ final class Surface {
     }
 
     private func createNormalSource() -> SCNGeometrySource {
-        var normals = Array<SCNVector3>()
+        var normals = Array<Float>()
 
         for (var i: Int = 0; i < indexes.count - 2; i+=3) {
             let point1 = points[Int(indexes[i])]
@@ -204,9 +208,12 @@ final class Surface {
             for normal in normalsForPoint {
                 combined += normal
             }
-            normals.append(combined / Float(normalsForPoint.count))
+            let averaged = combined / Float(normalsForPoint.count)
+            normals += [averaged.x, averaged.y, averaged.z]
         }
 
-        return SCNGeometrySource(normals:&normals, count: normals.count)
+        let normalData = NSData(bytes: normals, length: normals.count * sizeof(Float))
+
+        return SCNGeometrySource(data: normalData, semantic: SCNGeometrySourceSemanticNormal, vectorCount: normals.count / 3, floatComponents: true, componentsPerVector: 3, bytesPerComponent: sizeof(Float), dataOffset: 0, dataStride: sizeof(Float) * 3)
     }
 }
