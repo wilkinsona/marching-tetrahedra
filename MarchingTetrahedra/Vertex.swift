@@ -15,7 +15,12 @@ struct Vertex : Hashable {
     }
 
     func hash(into hasher: inout Hasher) {
-
+		print("Vertex Hash")
+        hasher.combine(self.position.x)
+        hasher.combine(self.position.y)
+        hasher.combine(self.position.z)
+        hasher.combine(self.fieldStrength)
+        hasher.combine(self.id)
     }
 }
 
