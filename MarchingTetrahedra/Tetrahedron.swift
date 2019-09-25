@@ -11,7 +11,7 @@ final class Tetrahedron {
 
         var intersectionType = 0
         var bit = 1
-        for var i = 0; i < self.vertices.count; i++ {
+        for i in 0..<self.vertices.count {
             let vertex = self.vertices[i]
             if (vertex.fieldStrength >= threshold) {
                 intersectionType |= bit

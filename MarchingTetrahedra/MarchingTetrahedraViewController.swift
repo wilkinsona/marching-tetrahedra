@@ -1,6 +1,12 @@
 import UIKit
 import SceneKit
 
+#if os(macOS)
+    typealias SCNColor = NSColor
+#else
+    typealias SCNColor = UIColor
+#endif
+
 class MarchingTetrahedraViewController: UIViewController {
 
     @IBOutlet private var sceneView: SCNView!
@@ -19,8 +25,8 @@ class MarchingTetrahedraViewController: UIViewController {
 
         let (geometry, triangleCount) = surface.createGeometry()
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.yellowColor()
-        material.specular.contents = UIColor.yellowColor()
+        material.diffuse.contents = SCNColor.red
+        material.specular.contents = SCNColor.red
         geometry.materials = [material]
 
         let surfaceNode = SCNNode(geometry: geometry)
@@ -29,15 +35,15 @@ class MarchingTetrahedraViewController: UIViewController {
         scene.rootNode.addChildNode(surfaceNode)
 
         let diffuseLight = SCNLight()
-        diffuseLight.color = UIColor.lightGrayColor()
-        diffuseLight.type = SCNLightTypeOmni
+        diffuseLight.color = SCNColor.lightGray
+        diffuseLight.type = SCNLight.LightType.omni
         let lightNode = SCNNode()
         lightNode.light = diffuseLight
         lightNode.position = SCNVector3(x: -30, y:30, z:30)
         scene.rootNode.addChildNode(lightNode)
 
         let ambientLight = SCNLight()
-        ambientLight.type = SCNLightTypeAmbient
+        ambientLight.type = SCNLight.LightType.ambient
         let ambientLightNode = SCNNode()
         ambientLight.color = UIColor(white: 0.3, alpha: 1)
         ambientLightNode.light = ambientLight
