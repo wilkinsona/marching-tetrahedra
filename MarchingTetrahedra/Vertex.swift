@@ -1,6 +1,6 @@
 import SceneKit
 
-struct Vertex {
+struct Vertex : Hashable {
 
     let position: SCNVector3
 
@@ -12,6 +12,15 @@ struct Vertex {
         self.position = position
         self.fieldStrength = fieldStrength;
         self.id = id;
+    }
+
+    func hash(into hasher: inout Hasher) {
+		print("Vertex Hash")
+        hasher.combine(self.position.x)
+        hasher.combine(self.position.y)
+        hasher.combine(self.position.z)
+        hasher.combine(self.fieldStrength)
+        hasher.combine(self.id)
     }
 }
 

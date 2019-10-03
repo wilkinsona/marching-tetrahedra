@@ -33,15 +33,15 @@ final class Surface {
     }
 
     func createGeometry() -> (SCNGeometry, Int) {
-        self.points.removeAll(keepCapacity: true)
-        self.pointIndexByEdge.removeAll(keepCapacity: true)
-        self.indexes.removeAll(keepCapacity: true)
+        self.points.removeAll(keepingCapacity: true)
+        self.pointIndexByEdge.removeAll(keepingCapacity: true)
+        self.indexes.removeAll(keepingCapacity: true)
 
         for cube in createCubes() {
-            if (cube.isIntersected(self.threshold)) {
+            if (cube.isIntersected(threshold: self.threshold)) {
                 for tetrahedron in cube.subdivide() {
-                    for intersection in tetrahedron.intersectionsWithThreshold(self.threshold) {
-                        self.addPolygonForIntersection(intersection)
+                    for intersection in tetrahedron.intersectionsWithThreshold(threshold: self.threshold) {
+                        self.addPolygonForIntersection(intersection: intersection)
                     }
                 }
             }
@@ -51,14 +51,17 @@ final class Surface {
             return $0 + [$1.position.x, $1.position.y, $1.position.z]
         }
 
-        let vertexData = NSData(bytes: pointVectors, length: pointVectors.count * sizeof(Float))
+        let floatSize = MemoryLayout<Float>.size
+        let int32Size = MemoryLayout<Int32>.size
 
-        let geometrySource = SCNGeometrySource(data: vertexData, semantic: SCNGeometrySourceSemanticVertex, vectorCount: self.points.count, floatComponents: true, componentsPerVector: 3, bytesPerComponent: sizeof(Float), dataOffset: 0, dataStride: sizeof(Float) * 3)
+        let vertexData = Data(bytes: pointVectors, count: pointVectors.count * floatSize)
+
+        let geometrySource = SCNGeometrySource(data: vertexData, semantic: SCNGeometrySource.Semantic.vertex, vectorCount: self.points.count, usesFloatComponents: true, componentsPerVector: 3, bytesPerComponent: floatSize, dataOffset: 0, dataStride: floatSize * 3)
 
         let triangleCount = indexes.count / 3
 
-        let normalData = NSData(bytes: indexes, length: sizeof(Int32) * indexes.count)
-        let geometryElement = SCNGeometryElement(data: normalData, primitiveType: SCNGeometryPrimitiveType.Triangles, primitiveCount: triangleCount, bytesPerIndex: sizeof(Int32))
+        let normalData = Data(bytes: indexes, count: int32Size * indexes.count)
+        let geometryElement = SCNGeometryElement(data: normalData, primitiveType: SCNGeometryPrimitiveType.triangles, primitiveCount: triangleCount, bytesPerIndex: int32Size)
 
         let normalSource = createNormalSource()
 
@@ -78,24 +81,25 @@ final class Surface {
 
         var idCounter = 0
 
-        for var y = 0; y <= self.height; y++ {
+        for y in 0 ... self.height {
             let yPos: Float = originY + (Float(y) * self.cubeSize)
-            for var z = 0; z <= self.depth; z++ {
+            for z in 0 ... self.depth {
                 let zPos: Float = originZ + (Float(z) * self.cubeSize)
-                for var x = 0; x <= self.width; x++ {
+                for x in 0 ... self.width {
                     let xPos: Float = originX + (Float(x) * self.cubeSize)
                     let position = SCNVector3(x:xPos, y:yPos, z:zPos)
-                    let strength = fieldStrengthAtPosition(position)
-                    vertices.append(Vertex(position: position, fieldStrength:strength, id: idCounter++))
+                    let strength = fieldStrengthAtPosition(position: position)
+                    idCounter+=1
+                    vertices.append(Vertex(position: position, fieldStrength:strength, id: idCounter))
                 }
             }
         }
 
         var cubes: Array<Cube> = []
 
-        for var y = 0; y < height; y++ {
-            for var z = 0; z < depth; z++ {
-                for var x = 0; x < width; x++ {
+        for y in 0 ... height-1 {
+            for z in 0 ... depth-1 {
+                for x in 0 ... width-1 {
                     let xLow = x
                     let xHigh = x + 1
                     let yLow = y * (width + 1) * (height + 1)
@@ -120,9 +124,9 @@ final class Surface {
     }
 
     private func addPolygonForIntersection(intersection: Intersection) {
-        let index1 = pointForIntersectedEdge(intersection.edge3)
-        let index2 = pointForIntersectedEdge(intersection.edge2)
-        let index3 = pointForIntersectedEdge(intersection.edge1)
+        let index1 = pointForIntersectedEdge(edge: intersection.edge3)
+        let index2 = pointForIntersectedEdge(edge: intersection.edge2)
+        let index3 = pointForIntersectedEdge(edge: intersection.edge1)
 
         indexes.append(index1)
         indexes.append(index2)
@@ -130,9 +134,9 @@ final class Surface {
     }
 
     private func pointForIntersectedEdge(edge: Edge) -> Int32 {
-        var pointIndex = pointIndexByEdge[edge];
+        let pointIndex = pointIndexByEdge[edge];
         if (pointIndex == nil) {
-            let pointForEdge = pointAtThresholdOnEdge(edge)
+            let pointForEdge = pointAtThresholdOnEdge(edge: edge)
             points.append(Point(position: pointForEdge))
             let index = Int32(points.count - 1)
             pointIndexByEdge[edge] = index
@@ -159,10 +163,10 @@ final class Surface {
         return pointAtThresholdBetween(vertex1: low, vertex2: high)
     }
 
-    private func pointAtThresholdBetween(#vertex1: SCNVector3, vertex2: SCNVector3) -> SCNVector3 {
+    private func pointAtThresholdBetween(vertex1: SCNVector3, vertex2: SCNVector3) -> SCNVector3 {
         let midpoint = vertex1 + ((vertex2 - vertex1) / 2)
 
-        let delta = fieldStrengthAtPosition(midpoint) - self.threshold
+        let delta = fieldStrengthAtPosition(position: midpoint) - self.threshold
 
         if (abs(delta) < self.accuracy) {
             return midpoint
@@ -178,7 +182,7 @@ final class Surface {
     private func fieldStrengthAtPosition(position: SCNVector3) -> Float {
         var strength = Float(0.0)
         for source in self.sources {
-            strength += source.strengthAtPosition(position)
+            strength += source.strengthAtPosition(position: position)
         }
         return strength
     }
@@ -186,7 +190,7 @@ final class Surface {
     private func createNormalSource() -> SCNGeometrySource {
         var normals = Array<Float>()
 
-        for (var i: Int = 0; i < indexes.count - 2; i+=3) {
+        for i in 0 ... indexes.count-3 {
             let point1 = points[Int(indexes[i])]
             let point2 = points[Int(indexes[i + 1])]
             let point3 = points[Int(indexes[i + 2])]
@@ -194,7 +198,7 @@ final class Surface {
             let edge1 = point1.position - point2.position
             let edge2 = point1.position - point3.position
 
-            var normal = edge1.crossProduct(edge2)
+            var normal = edge1.crossProduct(other: edge2)
             normal.normalize()
 
             point1.normals.append(normal)
@@ -202,18 +206,21 @@ final class Surface {
             point3.normals.append(normal)
         }
 
-        for (var i = 0; i < points.count; i++) {
+        for i in 0 ... points.count-1 {
             var combined = SCNVector3(x: 0, y: 0, z: 0)
-            var normalsForPoint: Array<SCNVector3> = points[i].normals
+            let normalsForPoint: Array<SCNVector3> = points[i].normals
             for normal in normalsForPoint {
                 combined += normal
             }
-            let averaged = combined / Float(normalsForPoint.count)
+            var averaged = SCNVector3()
+            averaged.x = combined.x / Float(MemoryLayout<Float>.size)
+            averaged.y = combined.y / Float(MemoryLayout<Float>.size)
+            averaged.z = combined.z / Float(MemoryLayout<Float>.size)
             normals += [averaged.x, averaged.y, averaged.z]
         }
 
-        let normalData = NSData(bytes: normals, length: normals.count * sizeof(Float))
-
-        return SCNGeometrySource(data: normalData, semantic: SCNGeometrySourceSemanticNormal, vectorCount: normals.count / 3, floatComponents: true, componentsPerVector: 3, bytesPerComponent: sizeof(Float), dataOffset: 0, dataStride: sizeof(Float) * 3)
+        let normalData = Data(bytes: normals, count: normals.count *  MemoryLayout.size(ofValue: normals[0]))
+        let floatSize = MemoryLayout<Float>.size
+        return SCNGeometrySource(data: normalData, semantic: SCNGeometrySource.Semantic.normal, vectorCount: normals.count / 3, usesFloatComponents: true, componentsPerVector: 3, bytesPerComponent: floatSize, dataOffset: 0, dataStride: floatSize * 3)
     }
 }

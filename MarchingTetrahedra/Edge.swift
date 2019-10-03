@@ -9,8 +9,9 @@ struct Edge: Hashable {
         self.vertex2 = vertex2
     }
 
-    var hashValue: Int {
-        return vertex1.id.hashValue + vertex2.id.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.vertex1)
+        hasher.combine(self.vertex2)
     }
 }
 

@@ -10,10 +10,10 @@ final class Cube {
 
     func isIntersected(threshold: Float) -> Bool {
         var overThreshold = 0
-        for var i = 0; i < self.vertices.count; i++ {
+        for i in 0..<self.vertices.count {
             let vertex = self.vertices[i]
             if vertex.fieldStrength > threshold {
-                overThreshold++
+                overThreshold+=1
             }
             if (overThreshold > 0 && overThreshold <= i) {
                 return true
